@@ -1,0 +1,7 @@
+one-day/build
+one-day/public
+one-day/dist
+one-day/res
+one-day/coverage
+one-day/node_modules
+venv
