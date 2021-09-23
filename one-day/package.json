@@ -19,6 +19,7 @@
     "@types/react-dom": "^16.9.10",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
+    "axios": "^0.21.4",
     "ionicons": "^5.4.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -65,7 +66,10 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "3.2.3"
+    "@capacitor/cli": "3.2.3",
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.36",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.14"
   },
   "description": "An Ionic project"
 }
