@@ -4,6 +4,6 @@ import { IonButton } from '@ionic/react'
 
 import './CircularButton.css'
 
-const CircularButton: React.FC = () => <IonButton>Default</IonButton>
+const CircularButton = () => <IonButton>Default</IonButton>
 
 export default CircularButton
