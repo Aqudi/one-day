@@ -6,5 +6,6 @@
     "editor.formatOnSave": true,
     "emmet.includeLanguages": {
         "postcss": "css"
-    }
+    },
+    "files.insertFinalNewline": true,
 }
