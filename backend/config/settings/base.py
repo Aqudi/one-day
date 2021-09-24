@@ -76,11 +76,13 @@ THIRD_PARTY_APPS = [
     "drf_yasg",
     "dj_rest_auth",
     "dj_rest_auth.registration",
+    "imagekit",
+    "django_filters",
 ]
 
 LOCAL_APPS = [
     "one_day_backend.users.apps.UsersConfig",
-    # Your stuff: custom apps go here
+    "one_day_backend.community.apps.CommunityConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -99,10 +101,6 @@ AUTHENTICATION_BACKENDS = [
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
 AUTH_USER_MODEL = "users.User"
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -283,6 +281,8 @@ REST_FRAMEWORK = {
         "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_PAGINATION_CLASS": "one_day_backend.paginations.CustomPageNumberPagination",
+    "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
