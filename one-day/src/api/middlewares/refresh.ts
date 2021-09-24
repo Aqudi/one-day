@@ -1,9 +1,6 @@
-import axios, { AxiosRequestConfig } from "axios";
+import { AxiosRequestConfig } from "axios";
 import Cookie from "js-cookie";
-import dayjs from 'dayjs';
 import "dayjs/locale/ko";
-
-import jwt from 'jsonwebtoken';
 
 import { StroageService } from "../../services/StorageService";
 import * as AuthApi from "../AuthApi";

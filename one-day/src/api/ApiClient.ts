@@ -11,13 +11,13 @@ ApiClient.interceptors.request.use(refresh, refreshErrorHandle);
 
 // Request logger
 ApiClient.interceptors.request.use(request => {
-    console.debug('Starting Request', JSON.stringify(request, null, 2))
+    console.log('Starting Request', JSON.stringify(request, null, 2))
     return request
 })
 
 // Reponse logger
 ApiClient.interceptors.response.use(response => {
-    console.debug('Response:', JSON.stringify(response, null, 2))
+    console.log('Response:', JSON.stringify(response, null, 2))
     return response
 })
 
