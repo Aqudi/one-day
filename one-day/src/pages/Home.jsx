@@ -3,7 +3,7 @@ import ExploreContainer from '../components/ExploreContainer'
 import CircularButton from '../components/CircularButton'
 import './Home.css'
 
-import axios from 'axios'
+import ApiClient from '../api/ApiClient'
 import { useEffect, useState } from 'react'
 
 const Home = () => {
@@ -12,12 +12,12 @@ const Home = () => {
 
   useEffect(() => {
     // Todo List를 가져오는 코드
-    axios.get('https://jsonplaceholder.typicode.com/todos').then(response => {
+    ApiClient.get('https://jsonplaceholder.typicode.com/todos').then(response => {
       setTodos(response.data)
     })
 
     // Todo Item을 만드는 코드
-    axios
+    ApiClient
       .post('https://jsonplaceholder.typicode.com/todos', {
         title: todoTitleInput,
       })
@@ -40,7 +40,7 @@ const Home = () => {
           </IonToolbar>
         </IonHeader>
         <ExploreContainer />
-        <CircularButton />
+        <CircularButton>Hello</CircularButton>
         {JSON.stringify(todos?.splice(0, 2))}
       </IonContent>
     </IonPage>
