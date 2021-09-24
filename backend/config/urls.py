@@ -22,9 +22,6 @@ schema_view = get_schema_view(
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
-    # User management
-    path("users/", include("one_day_backend.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
     # Swagger
     re_path(
         r"^api/swagger(?P<format>\.json|\.yaml)$",
