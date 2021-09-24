@@ -1,24 +1,24 @@
-import axios from 'axios';
-import { refresh, refreshErrorHandle } from "./middlewares/refresh";
+import axios from 'axios'
+import { refresh, refreshErrorHandle } from './middlewares/refresh'
+import { requestLogger, responseLogger } from './middlewares/logger'
 
 const ApiClient = axios.create({
-    baseURL: process.env.BASE_URL,
-    timeout: 10000,
-    params: {}
+  baseURL: process.env.REACT_APP_BASE_URL,
+  timeout: 10000,
+  params: {},
 })
 
-ApiClient.interceptors.request.use(refresh, refreshErrorHandle);
+ApiClient.interceptors.request.use(request => requestLogger(request))
+ApiClient.interceptors.response.use(response => responseLogger(response))
 
-// Request logger
-ApiClient.interceptors.request.use(request => {
-    console.log('Starting Request', JSON.stringify(request, null, 2))
-    return request
+const AuthApiClient = axios.create({
+  baseURL: process.env.REACT_APP_BASE_URL,
+  timeout: 10000,
+  params: {},
 })
 
-// Reponse logger
-ApiClient.interceptors.response.use(response => {
-    console.log('Response:', JSON.stringify(response, null, 2))
-    return response
-})
+AuthApiClient.interceptors.request.use(request => requestLogger(request))
+AuthApiClient.interceptors.response.use(response => responseLogger(response))
+AuthApiClient.interceptors.request.use(refresh, refreshErrorHandle)
 
-export default ApiClient
+export { ApiClient, AuthApiClient }

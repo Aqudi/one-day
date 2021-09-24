@@ -1,46 +1,25 @@
-import ApiClient from "./ApiClient";
+import { ApiClient, AuthApiClient } from './ApiClient'
+import StorageService from '../services/StorageService'
 
-export {
-    login,
-    logout,
-    signup,
-    verifyToken,
-    refreshToken,
-}
-
+export { login, logout, signup }
 
 async function login({ username, password }) {
-    ApiClient.post("/auth/login/", { username, password }).then(
-        (response) => {
-        }
-    )
-}
-
-async function logout({ username, password }) {
-    ApiClient.post("/auth/logout/").then(
-        (response) => {
-        }
-    )
+  return ApiClient.post('/auth/login/', { username, password }).then(async response => {
+    return await StorageService.setRefreshToken(response.data.refresh_token)
+  })
 }
 
 async function signup({ username, email, password1, password2 }) {
-    ApiClient.post("/auth/registration/", {
-        username, email, password1, password2,
-    }).then(
-        (response) => {
-        }
-    )
+  return ApiClient.post('/auth/registration/', {
+    username,
+    email,
+    password1,
+    password2,
+  }).then(response => {})
 }
 
-async function verifyToken({ token }) {
-    ApiClient.post("/token/verify/", { token }).then(
-        (response) => {
-        }
-    )
-}
-
-async function refreshToken({ token }) {
-    return ApiClient.post("/token/refresh/", { token }).then(
-        (response) => response.data.access
-    )
+async function logout({ username, password }) {
+  return AuthApiClient.post('/auth/logout/').then(async response => {
+    return await StorageService.removeRefreshToken()
+  })
 }
