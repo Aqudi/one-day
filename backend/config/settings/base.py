@@ -71,6 +71,8 @@ THIRD_PARTY_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "corsheaders",
+    "drf_yasg",
+    "dj_rest_auth",
 ]
 
 LOCAL_APPS = [
@@ -275,12 +277,14 @@ SOCIALACCOUNT_ADAPTER = "one_day_backend.users.adapters.SocialAccountAdapter"
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework.authentication.SessionAuthentication",
-        "rest_framework.authentication.TokenAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
 CORS_URLS_REGEX = r"^/api/.*$"
-# Your stuff...
-# ------------------------------------------------------------------------------
+
+# dj_rest_auth - https://github.com/iMerica/dj-rest-auth
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = "jwt-auth"

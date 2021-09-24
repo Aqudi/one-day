@@ -1,29 +1,53 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.views import defaults as default_views
-from rest_framework.authtoken.views import obtain_auth_token
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="API",
+        default_version="v1",
+        description="API document",
+        terms_of_service="https://www.google.com/policies/terms/",
+        license=openapi.License(name="MIT License"),
+    ),
+    public=True,
+    permission_classes=[permissions.IsAdminUser],
+)
 
 urlpatterns = [
-    # path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
-    # path(
-    #     "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
-    # ),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("one_day_backend.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
+    # Swagger
+    re_path(
+        r"^api/swagger(?P<format>\.json|\.yaml)$",
+        schema_view.without_ui(cache_timeout=0),
+        name="schema-json",
+    ),
+    re_path(
+        r"^api/swagger/$",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    re_path(
+        r"^api/redoc/$",
+        schema_view.with_ui("redoc", cache_timeout=0),
+        name="schema-redoc",
+    ),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # API URLS
 urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
-    # DRF auth token
-    path("auth-token/", obtain_auth_token),
+    path("api/auth/", include("dj_rest_auth.urls")),
 ]
 
 if settings.DEBUG:
