@@ -11,6 +11,12 @@ http://cookiecutter-django.readthedocs.io/en/latest/settings.html
 
 ## Basic Commands
 
+### Superuser
+
+```
+docker-compose -f local.yml run --rm django python manage.py createsuperuser
+```
+
 ### Type checks
 
 ```
