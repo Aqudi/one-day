@@ -3,18 +3,6 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 import reportWebVitals from './reportWebVitals'
-import dotenv from 'dotenv'
-
-// dotenv config
-const environment = process.env.NODE_ENV || 'development'
-console.log('environment: ', environment)
-if (environment == 'development') {
-  console.log('환경변수: ', process.env)
-}
-dotenv.config({
-  debug: environment != 'production',
-  path: environment != 'production' ? './env.example' : null,
-})
 
 ReactDOM.render(
   <React.StrictMode>
