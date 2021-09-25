@@ -98,9 +98,11 @@ const Home = () => {
       </IonContent>
       <IonFooter>
         <div className="underbar">
-          <IonButton color="primary" value="home">
-            <IonIcon icon={home} />
-          </IonButton>
+          <Link to="/home">
+            <IonButton color="primary" value="home">
+              <IonIcon icon={home} />
+            </IonButton>
+          </Link>
           <Link to="/write">
             <IonButton color="primary" value="pencil">
               <IonIcon icon={pencil} />

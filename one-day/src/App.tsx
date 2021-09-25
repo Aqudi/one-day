@@ -55,6 +55,10 @@ const App: React.FC = () => {
                 <AsyncRoute exact path="/signup" importPath={() => import('./pages/Signup')}></AsyncRoute>
                 <AsyncRoute exact path="/write" importPath={() => import('./pages/Write')}></AsyncRoute>
                 <AsyncRoute exact path="/detail/:no" importPath={() => import('./pages/CommunityDetail')}></AsyncRoute>
+                <AsyncRoute
+                  exact
+                  path="/accomodatedetail/:no"
+                  importPath={() => import('./pages/AccomoDetail')}></AsyncRoute>
               </Switch>
             </OnedayContextProvider>
           </AuthServiceProvider>

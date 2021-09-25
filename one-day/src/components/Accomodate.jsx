@@ -47,7 +47,7 @@ const Accomodate = () => {
       return (
         <>
           {accomodate.data.map((data, idx) => (
-            <Link to={`/CommunityDetail/${data.id}`}>
+            <Link to={`/accomodatedetail/${data.id}`}>
               <div>
                 <IonCard>
                   <IonCardContent>
