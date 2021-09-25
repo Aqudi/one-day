@@ -31,7 +31,7 @@ export function AuthServiceProvider({ children }) {
   useEffect(() => {
     UsersApi.me()
       .then(user => setUser(user))
-      .catch(_error => { })
+      .catch(_error => {})
       .finally(() => setLoadingInitial(false))
   }, [])
 
@@ -53,11 +53,11 @@ export function AuthServiceProvider({ children }) {
   }
 
   // 회원가입
-  function signUp({ username, email, password1, password2 }) {
-    console.log('AuthService.signUp', { username, email, password1, password2 })
+  function signUp(params) {
+    console.log('AuthService.signUp', { ...params })
     setLoading(true)
 
-    AuthApi.signup({ username, email, password1, password2 })
+    AuthApi.signup({ ...params})
       .then(user => {
         setUser(user)
         history.push('/')

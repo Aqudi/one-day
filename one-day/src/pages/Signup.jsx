@@ -11,6 +11,7 @@ import {
   IonToast,
   IonButtons,
   IonLoading,
+  IonDatetime,
 } from '@ionic/react'
 import './Signup.css'
 
@@ -18,20 +19,18 @@ import { useState } from 'react'
 import useAuthService from '../services/AuthService'
 
 const Signup = () => {
-  const { signup, loading, error, user } = useAuthService()
+  const { signUp, loading, error, user } = useAuthService()
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2] = useState('')
   const [name, setName] = useState('')
-  const [year, setYear] = useState(2000)
-  const [month, setMonth] = useState(1)
-  const [day, setDay] = useState(1)
-  const [phone_number, setPhoneNumber] = useState(1)
+  const [phone_number, setPhoneNumber] = useState('')
+  const [birthday, setBirthday] = useState('2021-09-25')
 
   const handleSignup = event => {
     console.log('handleSignup')
-    signup({ username, password1, password2, name, birthday: `${year}-${month}-${day}}` })
+    signUp({ username, email, password1, password2, name, birthday, phone_number, nickname:username })
   }
 
   return (
@@ -44,22 +43,22 @@ const Signup = () => {
       </IonHeader>
       <IonContent className="ion-padding">
         <IonItem>
-          <IonLabel position="floating">사용자 이름</IonLabel>
+          <IonLabel position="stacked">아이디</IonLabel>
           <IonInput
             required="true"
             type="text"
             name="username"
-            placeholder="사용자 이름을 입력해주세요."
+            placeholder="아이디를 입력해주세요."
             value={username}
             onIonChange={event => setUsername(event.detail.value)}
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">비밀번호</IonLabel>
+          <IonLabel position="stacked">비밀번호</IonLabel>
           <IonInput
             required="true"
             autocomplete="true"
-            type="password1"
+            type="password"
             name="password1"
             placeholder="비밀번호를 입력해주세요."
             value={password1}
@@ -67,11 +66,11 @@ const Signup = () => {
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">비밀번호 확인</IonLabel>
+          <IonLabel position="stacked">비밀번호 확인</IonLabel>
           <IonInput
             required="true"
             autocomplete="true"
-            type="password2"
+            type="password"
             name="password2"
             placeholder="비밀번호를 똑같이 입력해주세요."
             value={password2}
@@ -79,45 +78,37 @@ const Signup = () => {
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">사용자 이름</IonLabel>
+          <IonLabel position="stacked">성함</IonLabel>
           <IonInput
             required="true"
             type="text"
-            name="username"
-            placeholder="사용자 이름을 입력해주세요."
-            value={username}
-            onIonChange={event => setUsername(event.detail.value)}
+            name="name"
+            placeholder="성함/실명을 입력해주세요."
+            value={name}
+            onIonChange={event => setName(event.detail.value)}
           />
         </IonItem>
+
         <IonItem>
-          <IonLabel position="floating">생년월일</IonLabel>
-          <IonInput
-            required="true"
-            type="text"
-            name="username"
-            placeholder="사용자 이름을 입력해주세요."
-            value={year}
-            onIonChange={event => setYear(event.detail.value)}
-          />
-          <IonInput
-            required="true"
-            type="text"
-            name="username"
-            placeholder="사용자 이름을 입력해주세요."
-            value={month}
-            onIonChange={event => setMonth(event.detail.value)}
-          />
-          <IonInput
-            required="true"
-            type="text"
-            name="username"
-            placeholder="사용자 이름을 입력해주세요."
-            value={day}
-            onIonChange={event => setDay(event.detail.value)}
-          />
+          <IonLabel position="stacked">생년월일</IonLabel>
+          <IonDatetime
+            name="birthday"
+            placeholder="생년월일"
+            displayFormat="YYYY-MM-DD"
+            display-timezone="Asia/Seoul"
+            value={birthday}
+            pickerOptions={{
+              buttons: [
+                {
+                  text: '저장',
+                },
+
+              ],
+            }}
+            onChange={e => setBirthday(e.detail.value)}></IonDatetime>
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">이메일</IonLabel>
+          <IonLabel position="stacked">이메일</IonLabel>
           <IonInput
             required="true"
             type="text"
@@ -128,7 +119,7 @@ const Signup = () => {
           />
         </IonItem>
         <IonItem>
-          <IonLabel position="floating">휴대전화</IonLabel>
+          <IonLabel position="stacked">휴대전화</IonLabel>
           <IonInput
             required="true"
             type="text"
