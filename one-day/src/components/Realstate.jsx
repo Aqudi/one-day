@@ -49,12 +49,8 @@ const Realstate = () => {
           {posts.data.map((data, idx) =>
             data.category == 1 ? (
               <Link to={`/CommunityDetail/${data.id}`}>
-                <div>
-                  <IonCard>
-                    <IonCardHeader>{data.title}</IonCardHeader>
-                    <IonCardContent>{data.content}</IonCardContent>
-                  </IonCard>
-                </div>
+                <IonCardHeader>{data.title}</IonCardHeader>
+                <IonCardContent>{data.content}</IonCardContent>
               </Link>
             ) : (
               <></>
