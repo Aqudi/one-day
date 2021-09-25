@@ -12,6 +12,7 @@ User = get_user_model()
 class Post(TimeStampedModel):
     """Default user for One day backend project."""
 
+    category = models.SmallIntegerField(default=0)
     user = models.ForeignKey(
         User,
         related_name="posts",

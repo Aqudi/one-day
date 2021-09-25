@@ -40,6 +40,7 @@ class PostViewSet(
         "create": PostCreateSerializer,
     }
     queryset = Post.objects.all()
+    filterset_fields = ["category"]
 
     @action(detail=True, methods=["POST"])
     def like(self, request, pk=None):
