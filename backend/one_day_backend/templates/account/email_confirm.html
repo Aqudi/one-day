@@ -1,34 +1,36 @@
 {% extends "account/base.html" %}
 
-{% load i18n %}
 {% load account %}
 
-{% block head_title %}{% translate "Confirm E-mail Address" %}{% endblock %}
+{% block head_title %}이메일 주소 인증{% endblock %}
 
 
 {% block inner %}
-<h1>{% translate "Confirm E-mail Address" %}</h1>
+<h1>이메일 주소 인증</h1>
 
 {% if confirmation %}
 
 {% user_display confirmation.email_address.user as user_display %}
 
-<p>{% blocktranslate with confirmation.email_address.email as email %}
-    Please confirm that <a href="mailto:{{ email }}">{{ email }}</a> is an e-mail address for user {{ user_display }}.
-    {% endblocktranslate %}
+<p>
+    다음 이메일 주소의 소유자가 {{ user_display }} 님이 맞는지 확인해주세요.
+    <a href="mailto:{{ confirmation.email_address.email }}">{{ confirmation.email_address.email }}</a>
 </p>
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
     {% csrf_token %}
-    <button class="btn btn-primary" type="submit">{% translate 'Confirm' %}</button>
+    <button class="btn btn-primary" type="submit">인증하기</button>
 </form>
 
 {% else %}
 
 {% url 'account_email' as email_url %}
 
-<p>{% blocktranslate %}This e-mail confirmation link expired or is invalid. Please <a href="{{ email_url }}">issue a new
-        e-mail confirmation request</a>.{% endblocktranslate %}</p>
+이 이메일 인증 링크는 만료되었거나 잘못되었습니다.
+
+<a href="{{ email_url }}">
+    이 링크를 통해서 다시 이메일 인증을 시도해주세요.
+</a>
 
 {% endif %}
 
