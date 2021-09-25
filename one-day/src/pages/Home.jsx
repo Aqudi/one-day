@@ -119,9 +119,16 @@ const Home = () => {
             <IonButton color="primary" value="home">
               <IonIcon className="ion-justify-content-center" icon={home} />
             </IonButton>
-            <IonButton color="primary" value="pencil">
-              <IonIcon className="ion-justify-content-center" icon={pencil} />
-            </IonButton>
+            <Link to="/home">
+              <IonButton color="primary" value="home">
+                <IonIcon icon={home} />
+              </IonButton>
+            </Link>
+            <Link to="/write">
+              <IonButton color="primary" value="pencil">
+                <IonIcon className="ion-justify-content-center" icon={pencil} />
+              </IonButton>
+            </Link>
           </div>
         </div>
       </IonFooter >

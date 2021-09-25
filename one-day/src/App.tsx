@@ -84,6 +84,10 @@ const App: React.FC = () => {
                   exact
                   path="/detail/:no"
                   importPath={() => import('./pages/CommunityDetail')}></AuthenticatedRoute>
+                <AsyncRoute
+                  exact
+                  path="/accomodatedetail/:no"
+                  importPath={() => import('./pages/AccomoDetail')}></AsyncRoute>
               </Switch>
             </OnedayContextProvider>
           </AuthServiceProvider>
