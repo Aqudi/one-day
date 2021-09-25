@@ -15,7 +15,7 @@ class User(AbstractUser):
     birthday = CharField("생일", max_length=10, null=True, blank=True)
     phone_number = CharField("전화번호", max_length=17, null=True, blank=True)
     native = BooleanField("현지인인증", default=False, blank=True)
-    nickname = CharField("닉네임", max_length=200)
+    nickname = CharField("닉네임", max_length=200, null=True, blank=True)
 
     def get_absolute_url(self):
         """Get url for user's detail view.

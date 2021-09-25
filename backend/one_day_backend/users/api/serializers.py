@@ -30,6 +30,7 @@ class CustomRegisterSerializer(RegisterSerializer):
     nickname = serializers.CharField()
 
     def custom_signup(self, request, user):
+        print(request.POST)
         user.name = self.validated_data.get("name", "")
         user.birthday = self.validated_data.get("birthday", "")
         user.phone_number = self.validated_data.get("phone_number", "")
