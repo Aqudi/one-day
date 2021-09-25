@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Loading from '../components/loading'
+import './components.css'
 import { useEffect, useState, useContext } from 'react'
 import {
   IonButton,
@@ -48,11 +49,12 @@ const Information = () => {
         <>
           {posts.data.map((data, idx) =>
             data.category == 0 ? (
-              <Link to={`/detail/${data.id}`}>
+              <Link to={`/detail/${data.id}`} style={{ textDecoration: 'none' }}>
                 <div>
                   <IonCard>
-                    {data.user}
-                    <IonCardHeader>{data.title}</IonCardHeader>
+                    <IonCardHeader>
+                      <span className="title">{data.title}</span>
+                    </IonCardHeader>
                     <IonCardContent>{data.content}</IonCardContent>
                   </IonCard>
                 </div>

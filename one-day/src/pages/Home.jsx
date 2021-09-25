@@ -50,7 +50,7 @@ const Home = () => {
           <div className="profileBox">
             <img src={userImage}></img>
           </div>
-          <p>안녕하세요 username님</p>
+          <p>{`안녕하세요 ${user && user.username}님`}</p>
           <SearchBar mode="md" value={searchText} onIonChange={e => setSearchText(e.detail.value)}></SearchBar>
         </div>
         <IonCard mode="md">
@@ -101,15 +101,12 @@ const Home = () => {
       <IonFooter>
         <div class="underbar column">
           <div class="underbar">
-            <IonButton color="primary" value="home">
-              <IonIcon className="ion-justify-content-center" icon={home} />
-            </IonButton>
-            <Link to="/home">
+            <Link to="/home" style={{ textDecoration: 'none' }}>
               <IonButton color="primary" value="home">
                 <IonIcon icon={home} />
               </IonButton>
             </Link>
-            <Link to="/write">
+            <Link to="/write" style={{ textDecoration: 'none' }}>
               <IonButton color="primary" value="pencil">
                 <IonIcon className="ion-justify-content-center" icon={pencil} />
               </IonButton>

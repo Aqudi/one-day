@@ -47,7 +47,7 @@ const Accomodate = () => {
       return (
         <>
           {accomodate.data.map((data, idx) => (
-            <Link to={`/accomodatedetail/${data.id}`}>
+            <Link to={`/accomodatedetail/${data.id}`} style={{ textDecoration: 'none' }}>
               <div>
                 <IonCard>
                   <IonCardContent>
