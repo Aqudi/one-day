@@ -1,11 +1,12 @@
 import { IonSearchbar } from '@ionic/react'
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-const searchBar = styled(IonSearchBar)`
-    --background: white;
-    --border-radius: 10%;
+const SearchBar = styled(IonSearchbar)`
+  --background: white;
+  --border-radius: 10%;
 
-// const SearchBar = styled(IonSearchbar)`
+  // const SearchBar = styled(IonSearchbar)
+`
 //     &::part(native) {
 //         background-color: white;
 //         border-radius: 10px;
