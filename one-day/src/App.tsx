@@ -38,9 +38,9 @@ const App: React.FC = () => (
       <IonRouterOutlet>
         <Route path="/" exact component={Home} />
         <Home />
-        <Route path="/" exact component={Home}>
+        {/* <Route path="/" exact component={Home}>
           <Redirect to="/home" />
-        </Route>
+        </Route> */}
         <Route exact path="/login">
           <Login />
         </Route>
@@ -50,10 +50,10 @@ const App: React.FC = () => (
         <Route exact path="/search">
           <Search></Search>
         </Route>
-        <Route exact path={['/@:username', '/']} exact/>
+        <Route exact path="/@:userId">
           <Community></Community>
         </Route>
-        <Route exact path="/@:username/:postId">
+        <Route exact path="/@:userId/:postId">
           <Communitydetail></Communitydetail>
         </Route>
         <Route exact path="">

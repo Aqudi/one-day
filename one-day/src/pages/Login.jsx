@@ -8,12 +8,14 @@ import { login } from '../api/AuthApi'
 const Login = () => {
   const history = useHistory()
   const [username, setUsername] = useState('')
+  //const [email, setEmail] = useState('')
   const [password, setpassword] = useState('')
   const [error, setError] = useState('')
 
   const onClick = useCallback(event => {
     login({ username, password })
-      .then(() => {
+      .then(res => {
+        console.log(res)
         history.push('/home')
       })
       .catch(error => setError('에러발생!'))
