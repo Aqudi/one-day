@@ -6,3 +6,7 @@
   --ion-color-primary-shade: #f85200;
   --ion-color-primary-tint: #ff864b;
 }
+
+.scroll-content {
+  overflow-y: auto !important;
+}

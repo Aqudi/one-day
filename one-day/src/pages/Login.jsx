@@ -40,19 +40,18 @@ const Login = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar color="light">
-          s
           <IonButtons slot="start" />
           <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding">
         <IonItem>
-          <IonLabel position="floating">사용자 이름</IonLabel>
+          <IonLabel position="stacked">아이디</IonLabel>
           <IonInput
             required="true"
             type="text"
             name="username"
-            placeholder="사용자 이름을 입력해주세요."
+            placeholder="아이디를 입력해주세요."
             value={username}
             onIonChange={event => setUsername(event.detail.value)}
           />

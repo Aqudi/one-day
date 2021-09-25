@@ -12,12 +12,9 @@ async function login({ username, password }) {
   })
 }
 
-async function signup({ username, email, password1, password2 }) {
+async function signup(params) {
   return ApiClient.post('/auth/registration/', {
-    username,
-    email,
-    password1,
-    password2,
+    ...params
   }).then(response => {
     return response.data.detail
   })

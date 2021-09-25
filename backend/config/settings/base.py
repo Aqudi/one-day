@@ -83,6 +83,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "one_day_backend.users.apps.UsersConfig",
     "one_day_backend.community.apps.CommunityConfig",
+    "one_day_backend.accomo.apps.AccomoConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -284,6 +285,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_PAGINATION_CLASS": "one_day_backend.paginations.CustomPageNumberPagination",
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "one_day_backend.users.api.serializers.CustomRegisterSerializer"
 }
 
 # django-cors-headers - https://github.com/adamchainz/django-cors-headers#setup
