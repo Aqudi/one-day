@@ -11,7 +11,7 @@ import {
 } from '@ionic/react'
 import ExploreContainer from '../components/ExploreContainer'
 import CircularButton from '../components/CircularButton'
-import './search.css'
+import './Search.css'
 
 import ApiClient from '../api/ApiClient'
 import { chatbox, heart, star, pencil, pin, home, map } from 'ionicons/icons'
