@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react'
+import { useState, useContext } from 'react'
 import {
   IonButton,
   IonCard,
@@ -11,31 +11,29 @@ import {
   IonPage,
   IonSegment,
   IonSegmentButton,
-  IonToolbar,
   IonFooter,
-  IonNav,
-  IonRow,
-  IonCol,
-  IonGrid,
   IonLabel,
 } from '@ionic/react'
 
 import { me } from '../api/UsersApi'
 
 import './Home.css'
-import { useHistory, Link } from 'react-router-dom'
-import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 import { pencil, pin, home, map } from 'ionicons/icons'
 import SearchBar from '../components/SearchBar'
-import user from '../images/user.png'
+import userImage from '../images/user.png'
 
+import Information from '../components/Information'
+import Accomodate from '../components/Accomodate'
+import Realstate from '../components/Realstate'
+import { OnedayContext } from '../context/context'
 const Home = () => {
   const [searchText, setSearchText] = useState('')
   const [profile, setProfile] = useState()
   const [todos, setTodos] = useState([])
   const [todoTitleInput, setTodoTitleInput] = useState('test title input 입니다.')
-  const [selected, setSelected] = useState('숙박')
+  const [selected, setSelected] = useState("숙박")
   const { user } = useContext(OnedayContext)
   let history = useHistory()
   const getMyProfile = () => {
@@ -50,22 +48,22 @@ const Home = () => {
       <IonContent fullscreen>
         <div className="head">
           <div className="profileBox">
-            <img src={user}></img>
-          </div>
+            <img src={userImage}></img>
+          </div >
           <p>안녕하세요 username님</p>
           <SearchBar mode="md" value={searchText} onIonChange={e => setSearchText(e.detail.value)}></SearchBar>
-        </div>
+        </div >
         <IonCard mode="md">
-          <IonSegment mode="md" value="home" onIonChange={e => console.log('Segment selected', e.detail.value)} color="primary">
-            <IonSegmentButton value="home" >
+          <IonSegment mode="md" value={selected} onIonChange={e => setSelected(e.detail.value)} color="primary">
+            <IonSegmentButton value="숙박" >
               <IonIcon icon={home} />
               <IonLabel> 숙박</IonLabel>
             </IonSegmentButton>
-            <IonSegmentButton value="info">
+            <IonSegmentButton value="정보">
               <IonIcon icon={pin} />
               <IonLabel> 정보</IonLabel>
             </IonSegmentButton>
-            <IonSegmentButton value="native">
+            <IonSegmentButton value="현지인매칭">
               <IonIcon icon={map} />
               <IonLabel> 현지인매칭</IonLabel>
             </IonSegmentButton>
@@ -99,15 +97,22 @@ const Home = () => {
                 week in the woods. Wash your spirit clean.
               </IonCardContent>
             </IonCard>
+            {
+              selected === '숙박' ? (
+                <div className="body">
+                  <Accomodate key="숙박"></Accomodate>
+                </div>
+              ) : selected === '정보' ? (
+                <Information key="정보" />
+              ) : (
+                <IonCard>
+                  <Realstate key="현지인"></Realstate>
+                </IonCard>
+              )
+            }
           </div>
-        ) : selected === '정보' ? (
-          <Information />
-        ) : (
-          <IonCard>
-            <Realstate></Realstate>
-          </IonCard>
-        )}
-      </IonContent>
+        </div>
+      </IonContent >
       <IonFooter>
         <div class="underbar column">
           <div class="underbar">
