@@ -1,0 +1,10 @@
+{% load account %}{% user_display user as user_display %}{%autoescape off %}
+{{ user_display }}님 안녕하세요.
+
+저희 서비스에 가입해주신 것에 대단히 감사드립니다.
+아래 링크를 눌러 이메일 인증을 완료해주세요.
+
+{{activate_url }}
+
+감사합니다.
+{% endautoescape %}

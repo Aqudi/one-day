@@ -1,10 +1,9 @@
-import { Redirect, Route } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import { IonApp, IonRouterOutlet } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
-
-/* Pages */
-import Home from './pages/Home'
-import Login from './pages/Login'
+import useAuthService, { AuthServiceProvider } from './services/AuthService'
+import loadable from '@loadable/component'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
@@ -27,22 +26,37 @@ import './theme/variables.css'
 
 import './App.css'
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
-          <Redirect to="/home" />
-        </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-      </IonRouterOutlet>
-    </IonReactRouter>
-  </IonApp>
-)
+// Lazy route component
+function AsyncRoute({ importPath, ...props }) {
+  return <Route {...props} component={loadable(importPath)} />
+}
+
+// 로그인한 유저만 들어갈 수 있는 Router
+function AuthenticatedRoute(props) {
+  const { user } = useAuthService()
+  if (!user) return <Redirect to="/login" />
+  return <AsyncRoute {...props} />
+}
+
+const App: React.FC = () => {
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonRouterOutlet>
+          <AuthServiceProvider>
+            <Switch>
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+              <AuthenticatedRoute exact path="/home" importPath={() => import('./pages/Home')}></AuthenticatedRoute>
+              <AsyncRoute exact path="/login" importPath={() => import('./pages/Login')}></AsyncRoute>
+              <AsyncRoute exact path="/signup" importPath={() => import('./pages/Signup')}></AsyncRoute>
+            </Switch>
+          </AuthServiceProvider>
+        </IonRouterOutlet>
+      </IonReactRouter>
+    </IonApp>
+  )
+}
 
 export default App

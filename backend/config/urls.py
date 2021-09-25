@@ -1,8 +1,10 @@
+from dj_rest_auth.registration.views import ConfirmEmailView, VerifyEmailView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.views import defaults as default_views
+from django.views.generic.base import TemplateView
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
@@ -45,7 +47,22 @@ urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
     path("api/auth/", include("dj_rest_auth.urls")),
+    path(
+        "api/auth/registration/account-confirm-email/<str:key>/",
+        ConfirmEmailView.as_view(),
+        name="account_confirm_email",
+    ),
     path("api/auth/registration/", include("dj_rest_auth.registration.urls")),
+    path(
+        "api/auth/account-confirm-email/",
+        VerifyEmailView.as_view(),
+        name="account_email_verification_sent",
+    ),
+    path(
+        "congraturation/",
+        TemplateView.as_view(template_name="account/email_confirm_finished.html"),
+        name="account_confirm_email_finished",
+    ),
 ]
 
 if settings.DEBUG:

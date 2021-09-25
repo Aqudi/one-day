@@ -10,6 +10,9 @@ class AccountAdapter(DefaultAccountAdapter):
     def is_open_for_signup(self, request: HttpRequest):
         return getattr(settings, "ACCOUNT_ALLOW_REGISTRATION", True)
 
+    def get_email_confirmation_redirect_url(self, request):
+        return settings.EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL
+
 
 class SocialAccountAdapter(DefaultSocialAccountAdapter):
     def is_open_for_signup(self, request: HttpRequest, sociallogin: Any):
