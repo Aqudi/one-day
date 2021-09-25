@@ -17,6 +17,8 @@ import './Login.css'
 import { useState } from 'react'
 import useAuthService from '../services/AuthService'
 import { useHistory } from 'react-router'
+import yolam from '../images/yolam.png'
+import textlogo from '../images/textlogo.png'
 
 const Login = () => {
   const history = useHistory()
@@ -39,12 +41,18 @@ const Login = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar color="light">
-          <IonButtons slot="start" />
-          <IonTitle>Login</IonTitle>
-        </IonToolbar>
+      <div className="head">
+        <span>로그인</span>
+        </div>
       </IonHeader>
       <IonContent className="ion-padding">
+
+          <div className="logo">
+            <img src={textlogo}></img>
+          </div>
+
+          <br></br>
+
         <IonItem>
           <IonLabel position="stacked">아이디</IonLabel>
           <IonInput
