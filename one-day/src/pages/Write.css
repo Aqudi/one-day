@@ -1,0 +1,36 @@
+.head {
+    background-color:#ffa700;
+    height: 100px;
+    width: 100%;
+    font-weight: bold;
+}
+
+.head span {
+    display: block;
+    padding-top: 45px;
+    text-align: left;
+    margin-left: 30px;
+    font-size:large;
+}
+
+.write input {
+    margin: 5%;
+    padding: 10px;
+    width: 90%;
+    height: 200px;
+}
+
+.underbar {
+    background-color:#ffa700;
+    color: white;
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    font-size: large;
+    padding: 20px;
+}
+
+.underbar span {
+    margin-top: 20px;
+    padding-top: 20px;
+}
