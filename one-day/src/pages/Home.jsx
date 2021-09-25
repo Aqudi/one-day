@@ -18,6 +18,7 @@ import {
 import { me } from '../api/UsersApi'
 
 import './Home.css'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 
 import { pencil, pin, home, map } from 'ionicons/icons'
@@ -33,7 +34,7 @@ const Home = () => {
   const [todoTitleInput, setTodoTitleInput] = useState('test title input 입니다.')
   const [selected, setSelected] = useState('숙박')
   const { user } = useContext(OnedayContext)
-
+  let history = useHistory()
   const getMyProfile = () => {
     me().then(data => {
       console.log(data)
@@ -100,9 +101,11 @@ const Home = () => {
           <IonButton color="primary" value="home">
             <IonIcon icon={home} />
           </IonButton>
-          <IonButton color="primary" value="pencil">
-            <IonIcon icon={pencil} />
-          </IonButton>
+          <Link to="/write">
+            <IonButton color="primary" value="pencil">
+              <IonIcon icon={pencil} />
+            </IonButton>
+          </Link>
         </div>
       </IonFooter>
     </IonPage>

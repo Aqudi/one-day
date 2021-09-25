@@ -48,7 +48,7 @@ const Information = () => {
         <>
           {posts.data.map((data, idx) =>
             data.category == 0 ? (
-              <Link to={`/CommunityDetail/${data.id}`}>
+              <Link to={`/detail/${data.id}`}>
                 <div>
                   <IonCard>
                     {data.user}
