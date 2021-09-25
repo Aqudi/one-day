@@ -38,6 +38,13 @@ function AuthenticatedRoute(props) {
   return <AsyncRoute {...props} />
 }
 
+// 로그인한 유저만 들어갈 수 있는 Router
+function NonAuthenticatedRoute(props) {
+  const { user } = useAuthService()
+  if (user) return <Redirect to="/home" />
+  return <AsyncRoute {...props} />
+}
+
 const App: React.FC = () => {
   return (
     <IonApp>
@@ -48,9 +55,20 @@ const App: React.FC = () => {
               <Route exact path="/">
                 <Redirect to="/home" />
               </Route>
+              <NonAuthenticatedRoute
+                exact
+                path="/login"
+                importPath={() => import('./pages/Login')}></NonAuthenticatedRoute>
+              <NonAuthenticatedRoute
+                exact
+                path="/signup"
+                importPath={() => import('./pages/Signup')}></NonAuthenticatedRoute>
+
               <AuthenticatedRoute exact path="/home" importPath={() => import('./pages/Home')}></AuthenticatedRoute>
-              <AsyncRoute exact path="/login" importPath={() => import('./pages/Login')}></AsyncRoute>
-              <AsyncRoute exact path="/signup" importPath={() => import('./pages/Signup')}></AsyncRoute>
+              <AuthenticatedRoute exact path="/mypage" importPath={() => import('./pages/Mypage')}></AuthenticatedRoute>
+              <AuthenticatedRoute exact path="/search" importPath={() => import('./pages/Search')}></AuthenticatedRoute>
+              <AuthenticatedRoute exact path="/write" importPath={() => import('./pages/Write')}></AuthenticatedRoute>
+              <AuthenticatedRoute exact path="/detail" importPath={() => import('./pages/Detail')}></AuthenticatedRoute>
             </Switch>
           </AuthServiceProvider>
         </IonRouterOutlet>

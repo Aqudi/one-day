@@ -7,7 +7,7 @@ import ApiClient from '../api/ApiClient'
 import { chatbox, heart, star, pencil, pin, home, map } from 'ionicons/icons';
 import { useEffect, useState } from 'react'
 
-const Home = () => {
+const Search = () => {
   const [searchText, setSearchText] = useState('');
   const [profile, setProfile] = useState()
   const [todos, setTodos] = useState([])
@@ -35,16 +35,16 @@ const Home = () => {
   //     })
   // }, [])
 
-return (
+  return (
     <IonPage>
       <IonContent fullscreen>
-      <div className="head">
+        <div className="head">
         </div>
-      <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value)}></IonSearchbar>
-      <span id="description">검색하신 키워드에 대한 정보</span>
-      <span id="right">MORE</span>
-      <div className="bestResult">
-      <p id="left">BEST!</p>
+        <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value)}></IonSearchbar>
+        <span id="description">검색하신 키워드에 대한 정보</span>
+        <span id="right">MORE</span>
+        <div className="bestResult">
+          <p id="left">BEST!</p>
           <div className="bigCard">
             <img src=""></img>
             강릉 와하우리조트
@@ -53,10 +53,10 @@ return (
             <p id="star">별점<IonIcon icon={star} /></p>
             <p id="price">₩1,200,000 / 29박</p>
           </div>
-      </div>
-      <div className="result">
+        </div>
+        <div className="result">
           <div className="smallCard1">
-          <img src=""></img>
+            <img src=""></img>
             숙소이름
             <p id="like">좋아요<IonIcon icon={heart} /></p>
             <p id="star">별점<IonIcon icon={star} /></p>
@@ -64,7 +64,7 @@ return (
           </div>
 
           <div className="smallCard2">
-          <img src="" alt=""></img>
+            <img src="" alt=""></img>
             <span id="username">유저이름</span>
             <span id="minute">n분 전</span>
             <p>게시글 제목</p>
@@ -73,20 +73,20 @@ return (
             <span id="heart"><IonIcon icon={heart} />하트수</span>
             <p id="category">무슨 카테고리 글인지</p>
           </div>
-      </div>
+        </div>
       </IonContent>
       <IonFooter>
-      <div className="underbar">
-        <IonButton color="primary" value="home">
-              <IonIcon icon={home} />
-        </IonButton>
-        <IonButton color="primary" value="pencil">
-              <IonIcon icon={pencil} />
-        </IonButton>
-      </div>
+        <div className="underbar">
+          <IonButton color="primary" value="home">
+            <IonIcon icon={home} />
+          </IonButton>
+          <IonButton color="primary" value="pencil">
+            <IonIcon icon={pencil} />
+          </IonButton>
+        </div>
       </IonFooter>
-   </IonPage>
+    </IonPage>
   );
 };
 
-export default Home;
+export default Search;
