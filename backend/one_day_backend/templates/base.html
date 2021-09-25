@@ -47,64 +47,29 @@
   <script defer src="{% static 'js/project.js' %}"></script>
 
   {% endblock javascript %}
-
 </head>
 
 <body>
-
-  <div class="mb-1">
-    <nav class="navbar navbar-expand-md navbar-light bg-light">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand">One day backend project</a>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          {% comment %}
-          {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            {# URL provided by django-allauth/account/urls.py #}
-            <a class="nav-link" href="{% url 'users:detail' request.user.username  %}">{% translate "My Profile" %}</a>
-          </li>
-          <li class="nav-item">
-            {# URL provided by django-allauth/account/urls.py #}
-            <a class="nav-link" href="{% url 'account_logout' %}">{% translate "Sign Out" %}</a>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            {# URL provided by django-allauth/account/urls.py #}
-            <a id="sign-up-link" class="nav-link" href="{% url 'account_signup' %}">{% translate "Sign Up" %}</a>
-          </li>
-          <li class="nav-item">
-            {# URL provided by django-allauth/account/urls.py #}
-            <a id="log-in-link" class="nav-link" href="{% url 'account_login' %}">{% translate "Sign In" %}</a>
-          </li>
-          {% endif %}
-          {% endcomment %}
-        </ul>
+  <div class="w-100 d-flex flex-row justify-content-center align-items-center" style="height:100vh;">
+    <div class="row justify-content-center" style="width:100vw">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}<button type="button"
+          class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
+      {% endfor %}
+      {% endif %}
+      <div class="col-0 col-sm-0 col-lg-1">
       </div>
-    </nav>
-
+      <div class="col-12 col-lg-10 col-sm-12 card w-80-l d-flex justify-content-center align-items-center"
+        style="height: 50vh;">
+        {% block content %}
+        <p>Use this document as a way to quick start any new project.</p>
+        {% endblock content %}
+      </div>
+      <div class="col-0 col-sm-0 col-lg-1">
+      </div>
+    </div>
   </div>
-
-  <div class="container">
-
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}<button type="button"
-        class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>
-    {% endfor %}
-    {% endif %}
-
-    {% block content %}
-    <p>Use this document as a way to quick start any new project.</p>
-    {% endblock content %}
-
-  </div> <!-- /container -->
-
   {% block modal %}{% endblock modal %}
 
   {% block inline_javascript %}

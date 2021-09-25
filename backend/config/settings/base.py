@@ -271,6 +271,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_ADAPTER = "one_day_backend.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "one_day_backend.users.adapters.SocialAccountAdapter"
+EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = "account_confirm_email_finished"
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
