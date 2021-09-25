@@ -298,7 +298,7 @@ CORS_URLS_REGEX = r"^/api/.*$"
 REST_USE_JWT = True
 JWT_AUTH_COOKIE = "jwt-auth"
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(seconds=60),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": True,
