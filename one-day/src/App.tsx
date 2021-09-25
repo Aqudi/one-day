@@ -5,7 +5,12 @@ import { IonReactRouter } from '@ionic/react-router'
 /* Pages */
 import Home from './pages/Home'
 import Login from './pages/Login'
-
+import Detail from './pages/Detail'
+import Search from './pages/Search'
+import Community from './pages/Community'
+import Communitydetail from './pages/CommunityDetail'
+import Mypage from './pages/Mypage'
+import Write from './pages/Write'
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css'
 
@@ -31,14 +36,31 @@ const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/">
+        <Route path="/" exact component={Home} />
+        <Home />
+        <Route path="/" exact component={Home}>
           <Redirect to="/home" />
         </Route>
         <Route exact path="/login">
           <Login />
+        </Route>
+        <Route exact path="">
+          <Detail></Detail>
+        </Route>
+        <Route exact path="/search">
+          <Search></Search>
+        </Route>
+        <Route exact path={['/@:username', '/']} exact/>
+          <Community></Community>
+        </Route>
+        <Route exact path="/@:username/:postId">
+          <Communitydetail></Communitydetail>
+        </Route>
+        <Route exact path="">
+          <Mypage></Mypage>
+        </Route>
+        <Route exact path="">
+          <Write></Write>
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
