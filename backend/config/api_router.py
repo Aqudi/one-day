@@ -1,6 +1,7 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
+from one_day_backend.accomo.api.views import AccomoViewSet
 from one_day_backend.community.api.views import (
     PostCommentViewSet,
     PostImageViewSet,
@@ -17,6 +18,7 @@ router.register("users", UserViewSet)
 router.register("community/posts", PostViewSet)
 router.register("community/comments", PostCommentViewSet)
 router.register("community/images", PostImageViewSet)
+router.register("accomos", AccomoViewSet)
 
 
 app_name = "api"

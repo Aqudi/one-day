@@ -83,6 +83,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "one_day_backend.users.apps.UsersConfig",
     "one_day_backend.community.apps.CommunityConfig",
+    "one_day_backend.accomo.apps.AccomoConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
