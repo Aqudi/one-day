@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { IonApp, IonRouterOutlet } from '@ionic/react'
 import { IonReactRouter } from '@ionic/react-router'
+import { OnedayContextProvider } from './context/context'
 import useAuthService, { AuthServiceProvider } from './services/AuthService'
 import loadable from '@loadable/component'
 
@@ -50,26 +51,41 @@ const App: React.FC = () => {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
-          <AuthServiceProvider>
-            <Switch>
-              <Route exact path="/">
-                <Redirect to="/home" />
-              </Route>
-              <NonAuthenticatedRoute
-                exact
-                path="/login"
-                importPath={() => import('./pages/Login')}></NonAuthenticatedRoute>
-              <NonAuthenticatedRoute
-                exact
-                path="/signup"
-                importPath={() => import('./pages/Signup')}></NonAuthenticatedRoute>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
 
-              <AuthenticatedRoute exact path="/home" importPath={() => import('./pages/Home')}></AuthenticatedRoute>
-              <AuthenticatedRoute exact path="/mypage" importPath={() => import('./pages/Mypage')}></AuthenticatedRoute>
-              <AuthenticatedRoute exact path="/search" importPath={() => import('./pages/Search')}></AuthenticatedRoute>
-              <AuthenticatedRoute exact path="/write" importPath={() => import('./pages/Write')}></AuthenticatedRoute>
-              <AuthenticatedRoute exact path="/detail" importPath={() => import('./pages/Detail')}></AuthenticatedRoute>
-            </Switch>
+          <AuthServiceProvider>
+            <OnedayContextProvider>
+              <Switch>
+                <Route exact path="/">
+                  <Redirect to="/home" />
+                </Route>
+                <NonAuthenticatedRoute
+                  exact
+                  path="/login"
+                  importPath={() => import('./pages/Login')}></NonAuthenticatedRoute>
+                <NonAuthenticatedRoute
+                  exact
+                  path="/signup"
+                  importPath={() => import('./pages/Signup')}></NonAuthenticatedRoute>
+
+                <AuthenticatedRoute exact path="/home" importPath={() => import('./pages/Home')}></AuthenticatedRoute>
+                <AuthenticatedRoute
+                  exact
+                  path="/mypage"
+                  importPath={() => import('./pages/Mypage')}></AuthenticatedRoute>
+                <AuthenticatedRoute
+                  exact
+                  path="/search"
+                  importPath={() => import('./pages/Search')}></AuthenticatedRoute>
+                <AuthenticatedRoute exact path="/write" importPath={() => import('./pages/Write')}></AuthenticatedRoute>
+                <AuthenticatedRoute
+                  exact
+                  path="/detail/:no"
+                  importPath={() => import('./pages/CommunityDetail')}></AuthenticatedRoute>
+              </Switch>
+            </OnedayContextProvider>
           </AuthServiceProvider>
         </IonRouterOutlet>
       </IonReactRouter>

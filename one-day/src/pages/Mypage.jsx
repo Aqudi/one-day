@@ -1,12 +1,22 @@
-import { IonButton, IonSearchbar, IonFooter, IonIcon, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import {
+  IonButton,
+  IonSearchbar,
+  IonFooter,
+  IonIcon,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react'
 import './Mypage.css'
 
 import ApiClient from '../api/ApiClient'
-import { book, chatbox, heart, star, pencil, pin, home, map } from 'ionicons/icons';
+import { book, chatbox, heart, star, pencil, pin, home, map } from 'ionicons/icons'
 import { useEffect, useState } from 'react'
 
 const Mypage = () => {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState('')
   const [profile, setProfile] = useState()
   const [todos, setTodos] = useState([])
   const [todoTitleInput, setTodoTitleInput] = useState('test title input 입니다.')
@@ -33,16 +43,16 @@ const Mypage = () => {
   //     })
   // }, [])
 
-return (
+  return (
     <IonPage>
       <IonContent fullscreen>
-      <div className="head">
-        <span>마이페이지</span>
-      </div>
+        <div className="head">
+          <span>마이페이지</span>
+        </div>
 
         <div className="userprofile">
           <div className="imageframe">
-          <img id="userpic" src=""></img>
+            <img id="userpic" src=""></img>
           </div>
           <p id="username">이름</p>
           <p>지역</p>
@@ -50,32 +60,33 @@ return (
           <button>로그아웃</button>
         </div>
 
-          <div className="button1">
-          <IonIcon icon={book} size="large"/>내가 작성한 글 보기
-          </div>
+        <div className="button1">
+          <IonIcon icon={book} size="large" />
+          내가 작성한 글 보기
+        </div>
 
+        <div className="button2">
+          <IonIcon icon={chatbox} size="large" />
+          내가 작성한 댓글 보기
+        </div>
 
-          <div className="button2">
-          <IonIcon icon={chatbox} size="large" />내가 작성한 댓글 보기
-          </div>
-
-          <div className="button3">
-          <IonIcon icon={heart} size="large" />좋아요 누른 글 보기
-          </div>
-
+        <div className="button3">
+          <IonIcon icon={heart} size="large" />
+          좋아요 누른 글 보기
+        </div>
       </IonContent>
       <IonFooter>
-      <div className="underbar">
-        <IonButton color="primary" value="home">
-              <IonIcon icon={home} />
-        </IonButton>
-        <IonButton color="primary" value="pencil">
-              <IonIcon icon={pencil} />
-        </IonButton>
-      </div>
+        <div className="underbar">
+          <IonButton color="primary" value="home">
+            <IonIcon icon={home} />
+          </IonButton>
+          <IonButton color="primary" value="pencil">
+            <IonIcon icon={pencil} />
+          </IonButton>
+        </div>
       </IonFooter>
-   </IonPage>
-  );
-};
+    </IonPage>
+  )
+}
 
-export default Mypage;
+export default Mypage

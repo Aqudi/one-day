@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import {
   IonButton,
   IonCard,
@@ -23,6 +23,7 @@ import {
 import { me } from '../api/UsersApi'
 
 import './Home.css'
+import { useHistory, Link } from 'react-router-dom'
 import axios from 'axios'
 
 import { pencil, pin, home, map } from 'ionicons/icons'
@@ -34,28 +35,15 @@ const Home = () => {
   const [profile, setProfile] = useState()
   const [todos, setTodos] = useState([])
   const [todoTitleInput, setTodoTitleInput] = useState('test title input 입니다.')
-
+  const [selected, setSelected] = useState('숙박')
+  const { user } = useContext(OnedayContext)
+  let history = useHistory()
   const getMyProfile = () => {
     me().then(data => {
       console.log(data)
       setProfile(data)
     })
   }
-
-  useEffect(async () => {
-    // Todo List를 가져오는 코드
-    axios.get('https://jsonplaceholder.typicode.com/todos').then(response => {
-      setTodos(response.data)
-    })
-    // Todo Item을 만드는 코드
-    axios
-      .post('https://jsonplaceholder.typicode.com/todos', {
-        title: todoTitleInput,
-      })
-      .then(response => {
-        console.log(response.data)
-      })
-  }, [])
 
   return (
     <IonPage>
@@ -112,7 +100,13 @@ const Home = () => {
               </IonCardContent>
             </IonCard>
           </div>
-        </div>
+        ) : selected === '정보' ? (
+          <Information />
+        ) : (
+          <IonCard>
+            <Realstate></Realstate>
+          </IonCard>
+        )}
       </IonContent>
       <IonFooter>
         <div class="underbar column">

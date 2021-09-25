@@ -1,11 +1,21 @@
-import { IonButton, IonSearchbar, IonFooter, IonIcon, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import {
+  IonButton,
+  IonSearchbar,
+  IonFooter,
+  IonIcon,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/react'
 import './Write.css'
 
 import ApiClient from '../api/ApiClient'
 import { useEffect, useState } from 'react'
 
 const Write = () => {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState('')
   const [profile, setProfile] = useState()
   const [todos, setTodos] = useState([])
   const [todoTitleInput, setTodoTitleInput] = useState('test title input 입니다.')
@@ -32,25 +42,24 @@ const Write = () => {
   //     })
   // }, [])
 
-return (
+  return (
     <IonPage>
       <IonContent fullscreen>
-      <div className="head">
-        <span>글쓰기</span>
-      </div>
+        <div className="head">
+          <span>글쓰기</span>
+        </div>
 
-      <div className="write">
-      <input></input>
-      </div>
-
+        <div className="write">
+          <input></input>
+        </div>
       </IonContent>
       <IonFooter>
-      <div className="underbar">
-        <span>다음</span>
-      </div>
+        <div className="underbar">
+          <span>다음</span>
+        </div>
       </IonFooter>
-   </IonPage>
-  );
-};
+    </IonPage>
+  )
+}
 
-export default Write;
+export default Write
