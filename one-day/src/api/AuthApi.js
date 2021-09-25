@@ -5,7 +5,10 @@ export { login, logout, signup }
 
 async function login({ username, password }) {
   return ApiClient.post('/auth/login/', { username, password }).then(async response => {
-    return await StorageService.setRefreshToken(response.data.refresh_token)
+    if (response.data.refresh_token) {
+      await StorageService.setRefreshToken(response.data.refresh_token)
+      return response.data.user
+    }
   })
 }
 
@@ -15,7 +18,9 @@ async function signup({ username, email, password1, password2 }) {
     email,
     password1,
     password2,
-  }).then(response => {})
+  }).then(response => {
+    return response.data.detail
+  })
 }
 
 async function logout({ username, password }) {
