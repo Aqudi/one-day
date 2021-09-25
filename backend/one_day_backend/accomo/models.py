@@ -39,6 +39,3 @@ class Accomo(TimeStampedModel):
 
     class Meta:
         ordering = ["-id"]
-
-    def __str__(self):
-        return f"PostImage ({self.id}) - {self.image.path}"
