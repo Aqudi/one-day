@@ -1,59 +1,84 @@
-import { IonButton, IonContent, IonHeader, IonInput, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react'
+import {
+  IonButton,
+  IonContent,
+  IonHeader,
+  IonInput,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonItem,
+  IonLabel,
+  IonToast,
+  IonButtons,
+  IonLoading,
+} from '@ionic/react'
 import './Login.css'
 
-import { useHistory } from 'react-router-dom'
-import { useCallback, useState } from 'react'
-import { login } from '../api/AuthApi'
+import { useState } from 'react'
+import useAuthService from '../services/AuthService'
+import { useHistory } from 'react-router'
 
 const Login = () => {
   const history = useHistory()
+  const { login, loading, error, user } = useAuthService()
   const [username, setUsername] = useState('')
-  //const [email, setEmail] = useState('')
-  const [password, setpassword] = useState('')
-  const [error, setError] = useState('')
+  const [password, setPassword] = useState('')
 
-  const onClick = useCallback(event => {
-    login({ username, password })
-      .then(res => {
-        console.log(res)
-        history.push('/home')
-      })
-      .catch(error => setError('에러발생!'))
-  })
+  const handleLogin = async event => {
+    console.log('handleLogin')
+    const res = await login({ username, password })
+    if (res) {
+      history.push('/home')
+    }
+  }
+
+  const onClickSignup = event => {
+    history.push('/signup')
+  }
 
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+        <IonToolbar color="light">
+          s
+          <IonButtons slot="start" />
+          <IonTitle>Login</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <IonInput
-          autocomplete="true"
-          type="text"
-          name="username"
-          value={username}
-          placeholder="ID"
-          onIonChange={e => setUsername(e.detail.value)}></IonInput>
-        <IonInput
-          autocomplete="true"
-          type="password"
-          name="password"
-          value={password}
-          placeholder="Password"
-          onIonChange={e => setpassword(e.detail.value)}></IonInput>
-        <IonButton type="button" onClick={onClick}>
-          로그인
-        </IonButton>
-
-        <IonText color="error">{error}</IonText>
+      <IonContent className="ion-padding">
+        <IonItem>
+          <IonLabel position="floating">사용자 이름</IonLabel>
+          <IonInput
+            required="true"
+            type="text"
+            name="username"
+            placeholder="사용자 이름을 입력해주세요."
+            value={username}
+            onIonChange={event => setUsername(event.detail.value)}
+          />
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">비밀번호</IonLabel>
+          <IonInput
+            required="true"
+            autocomplete="true"
+            type="password"
+            name="password"
+            placeholder="비밀번호를 입력해주세요."
+            value={password}
+            onIonChange={event => setPassword(event.detail.value)}
+          />
+        </IonItem>
+        <div style={{ padding: 10, paddingTop: 20 }}>
+          <IonButton type="button" expand="full" style={{ margin: 14 }} onClick={handleLogin}>
+            {user ? '이미 로그인 된 상태입니다.' : '로그인'}
+          </IonButton>
+          <IonButton type="button" expand="full" disabled={loading} style={{ margin: 14 }} onClick={onClickSignup}>
+            회원가입
+          </IonButton>
+        </div>
+        <IonLoading isOpen={loading} message={'잠시만 기다려주세요...'} duration={5000} />
+        <IonToast isOpen={error} message={error} duration={5000} />
       </IonContent>
     </IonPage>
   )
